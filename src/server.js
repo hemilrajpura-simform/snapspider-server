@@ -23,6 +23,8 @@ app.use("/screenshots", express.static(screenshotDir));
 app.post("/api/snapshots", async (req, res) => {
   const { url } = req.body;
 
+  console.log("📥 [API HIT] /api/snapshots", url, new Date().toISOString());
+
   if (!url) return res.status(400).json({ error: "URL is required" });
 
   try {
