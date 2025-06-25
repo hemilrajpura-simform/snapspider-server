@@ -29,7 +29,10 @@ app.post("/api/snapshots", async (req, res) => {
     const linksToVisit = await extractLinks(url);
     console.log(linksToVisit, "<-- linksToVisit");
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 800 });
 
